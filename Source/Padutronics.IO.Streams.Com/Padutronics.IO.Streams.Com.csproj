@@ -15,4 +15,7 @@
         <RepositoryUrl>https://github.com/Padutronics/Padutronics.IO.Streams.Com</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
     </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Padutronics.IO.Streams" Version="0.1.0" />
+    </ItemGroup>
 </Project>

@@ -37,7 +37,7 @@ public sealed class ComStreamWrapper : StreamWrapper, IStream
         };
     }
 
-    public void CopyTo(IStream pstm, long cb, IntPtr pcbRead, IntPtr pcbWritten)
+    public void CopyTo(IStream pstm, long cb, nint pcbRead, nint pcbWritten)
     {
         throw new NotImplementedException();
     }
@@ -47,11 +47,11 @@ public sealed class ComStreamWrapper : StreamWrapper, IStream
         throw new NotImplementedException();
     }
 
-    public void Read(byte[] pv, int cb, IntPtr pcbRead)
+    public void Read(byte[] pv, int cb, nint pcbRead)
     {
         int bytesRead = base.Read(pv, 0, cb);
 
-        if (pcbRead != IntPtr.Zero)
+        if (pcbRead != nint.Zero)
         {
             Marshal.WriteInt32(pcbRead, bytesRead);
         }
@@ -62,11 +62,11 @@ public sealed class ComStreamWrapper : StreamWrapper, IStream
         throw new NotImplementedException();
     }
 
-    public void Seek(long dlibMove, int dwOrigin, IntPtr plibNewPosition)
+    public void Seek(long dlibMove, int dwOrigin, nint plibNewPosition)
     {
         int position = (int)Seek(dlibMove, Convert(dwOrigin));
 
-        if (plibNewPosition != IntPtr.Zero)
+        if (plibNewPosition != nint.Zero)
         {
             Marshal.WriteInt32(plibNewPosition, position);
         }
@@ -87,11 +87,11 @@ public sealed class ComStreamWrapper : StreamWrapper, IStream
         throw new NotImplementedException();
     }
 
-    public void Write(byte[] pv, int cb, IntPtr pcbWritten)
+    public void Write(byte[] pv, int cb, nint pcbWritten)
     {
         Write(pv, 0, cb);
 
-        if (pcbWritten != IntPtr.Zero)
+        if (pcbWritten != nint.Zero)
         {
             Marshal.WriteInt32(pcbWritten, cb);
         }
